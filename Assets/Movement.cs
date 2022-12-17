@@ -4,46 +4,50 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    private Vector3 lastMouse = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+    public Vector3 direction;
     public Rigidbody RB;
     public GameObject ch;
-    public GameObject fps;
-    public GameObject tps;
+    float camSens = 0.25f;
     private float movementSpeed = 5f;
 
-    // Start is called before the first frame update
     void Start()
     {
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("w"))
-        {
-            transform.position += new Vector3(0, 0, movementSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey("s"))
-        {
-            transform.position += new Vector3(0, 0, -movementSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey("d"))
-        {
-            transform.position += new Vector3(movementSpeed * Time.deltaTime, 0, 0);
-        }
-        if (Input.GetKey("a"))
-        {
-            transform.position += new Vector3(-movementSpeed * Time.deltaTime, 0, 0);
-        }
-
-        if (Input.GetKeyDown("c"))
-        {
-            switch_camera();
-        }
+        // WASD girdilerini almamizi sagliyor.
+        direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+        
+        // Kameranin yatayda donusu karakter hareketi oldugu icin mouse inputunun yatayi ile karakter rotasyonu saglaniyor.
+        lastMouse = Input.mousePosition - lastMouse;
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + (lastMouse.x * camSens), 0);
+        lastMouse = Input.mousePosition;
+        
     }
 
-    public void switch_camera()
+    void FixedUpdate()
     {
-        fps.SetActive(!fps.activeSelf);
-        tps.SetActive(!tps.activeSelf);
+        movement(direction);
+    }
+
+    public void movement(Vector3 dir)
+    {
+        // Inputlar hesaplanarak karakter yonlendiriliyor.
+        RB.MovePosition(transform.position + (dir.z * transform.forward + dir.x * transform.right).normalized * movementSpeed * Time.deltaTime);
+        /*
+        // Eger yalnizca tek bi input var ise o yonde hareket
+        if (dir.x == 0)
+        {
+            RB.MovePosition(transform.position + (dir.z * transform.forward).normalized * movementSpeed * Time.deltaTime);
+        }
+        else if (dir.z == 0) 
+        {
+            RB.MovePosition(transform.position + (dir.x * transform.right).normalized * movementSpeed * Time.deltaTime);
+        }
+        else
+        {
+        }*/
     }
 }
