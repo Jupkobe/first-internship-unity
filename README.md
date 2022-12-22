@@ -1,6 +1,6 @@
 # EGEROBOT Internship Project
 
-This is my project for Egerobot internship program. The task is to trigger some event with certain actions in Unity 3D.
+My name is Ramazan Eyüp Gültekin and this is my project for Egerobot internship program.
 
 <h2>Assignment:</h2>
 
