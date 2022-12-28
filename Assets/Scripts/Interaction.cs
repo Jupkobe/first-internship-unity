@@ -5,54 +5,41 @@ using UnityEngine.UI;
 
 public class Interaction : MonoBehaviour
 {
-    public GameObject main_cam;
     public GameObject light_bulb;
     public GameObject light_src;
     public Material light_on;
     public Material light_off;
-    Animator anim;
-    float range;
+    public GameObject Box;
+    public GameObject Trigger;
+    public bool is_triggered;
+    Vector3 curr_pos;
+    public Rigidbody rb;
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+        curr_pos = transform.position;
+        Physics.IgnoreCollision(Box.GetComponent<Collider>(), GetComponent<Collider>()); // To ignore the box where button stands. Worker should collide but button shouldn't with it
+                                                                                         // so only ignoring collision between the box and the button.
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (Input.GetKeyDown("e"))
-        {
-            // Arranges range depends on your cam is fps or tps
-            Cam script = main_cam.GetComponent<Cam>();            
-            if (script.curr_cam == script.tps) range = 7f;
-            else range = 4f;
-
-            // Shoots a raycast in the cameras facing direction and if it hits to the object(in this case it's our button) calls the function "switch_light".
-            RaycastHit hit;
-            if (Physics.Raycast(main_cam.transform.position, main_cam.transform.forward, out hit, range))
-            {
-                if (hit.transform.gameObject == gameObject)
-                {
-                    switch_light();
-                }
-            }
-        }
+        float y_pos = Mathf.Clamp(transform.position.y + Time.deltaTime * 0.75f, 0, curr_pos.y);    // Calculates and limits button's min/max position in y-axis.
+        rb.MovePosition(new Vector3(transform.position.x, y_pos, transform.position.z));            // Fixes button's position after worker's push.
     }
 
-    void switch_light()
+    public void switch_light()
     {
-        // This function activates or deactivates the light source, changes the material and plays the button animation.
+        // This function activates or deactivates the light source and changes the material.
         if (light_src.activeSelf)
         {
             light_src.SetActive(false);
-            light_bulb.GetComponent<MeshRenderer> ().material = light_off;
-            anim.Play("Button_off");
+            light_bulb.GetComponent<MeshRenderer>().material = light_off;
         }
         else
         {
             light_src.SetActive(true);
-            light_bulb.GetComponent<MeshRenderer> ().material = light_on;
-            anim.Play("Button_on");
+            light_bulb.GetComponent<MeshRenderer>().material = light_on;
         }
     }
 }
