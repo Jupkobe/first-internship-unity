@@ -19,7 +19,21 @@ public class Interaction_animation : MonoBehaviour
         // Checks if animation is playing. If so, enables the box collider on the hand after a delay to prevent unwanted physical interaction.
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Pressing"))
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.4f)
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.3f)
+            {
+                boxCollider.enabled = true;
+            }            
+        }
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Plug"))
+        {
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.3f)
+            {
+                boxCollider.enabled = true;
+            }            
+        }
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Standing"))
+        {
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.3f)
             {
                 boxCollider.enabled = true;
             }            
@@ -28,6 +42,14 @@ public class Interaction_animation : MonoBehaviour
         else
         {
             if (Input.GetKeyDown("e"))
+            {
+                anim.Play("Crouch");
+            }
+            if (Input.GetKeyDown("r"))
+            {
+                anim.Play("Plug");
+            }
+            if (Input.GetKeyDown("t"))
             {
                 anim.Play("Pressing");
             }

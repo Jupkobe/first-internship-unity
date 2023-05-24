@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b2846379551c52348a87a5d9eb0dddb1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - panel: {instanceID: 0}
+  - text: {instanceID: 0}
+  - compressor: {instanceID: 0}
+  - Worker: {fileID: 919132149155446097, guid: 47d481b2b5ca8134f8f55b31b8aba1b2, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
