@@ -18,8 +18,10 @@ public class Cam : MonoBehaviour
     void Start()
     {
         curr_cam = tps;
+        /*
         skinRenderer = skin.GetComponent<SkinnedMeshRenderer>();
         mats = skinRenderer.materials;
+        */
     }
 
     void Update()
@@ -39,9 +41,14 @@ public class Cam : MonoBehaviour
             tps.SetActive(false);
             fps.SetActive(true);
 
+            // Makes worker's head visible in FPS mode
+            skin.SetActive(false);
+
             // Changes worker's body material to transparent one to make it invisible in fps mode.
+            /*
             mats[0] = transparent;
             skinRenderer.materials = mats;
+            */
 
             curr_cam = fps;
         }
@@ -51,9 +58,14 @@ public class Cam : MonoBehaviour
             tps.SetActive(true);
             fps.SetActive(false);
 
+            // Makes worker's head visible in FPS mode
+            skin.SetActive(true);
+
             // Changes worker's body material to original one back to make it visible in tps mode.
+            /*
             mats[0] = body_mat;
             skinRenderer.materials = mats;
+            */
 
             curr_cam = tps;
         }

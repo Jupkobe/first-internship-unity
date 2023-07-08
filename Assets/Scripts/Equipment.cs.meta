@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 60d24c50156b086489ca2d2e35538ea4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - helmet: {instanceID: 0}
+  - gloves: {instanceID: 0}
+  - glasses: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
