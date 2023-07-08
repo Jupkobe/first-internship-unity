@@ -17,9 +17,8 @@ public class Glowing : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   // Shoots a ray to detect the objects which this script binded and makes them glow
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, 5)){
-            // Debug.Log(hit.collider.gameObject.name);
             if(hit.transform.gameObject == gameObject) {
                 gameObject.GetComponent<Outline>().enabled = true;
                 is_ok = true;

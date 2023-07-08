@@ -8,7 +8,7 @@ public class Equipment : MonoBehaviour
 
 
     void OnCollisionEnter(Collision c)
-    {
+    {   //Enables unactive equipments on collision
         if (c.gameObject.name == "Gloves"){
             c.gameObject.SetActive(false);
             gloves.SetActive(true);

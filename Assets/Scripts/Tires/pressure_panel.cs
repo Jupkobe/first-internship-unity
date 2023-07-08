@@ -24,8 +24,9 @@ public class pressure_panel : MonoBehaviour
 
     void Pump() {
         if(psi < 100) {
-            psi += 1;
-            textMeshProUGUI.text = psi.ToString();
+            psi += 1; // Increases the value
+            textMeshProUGUI.text = psi.ToString(); // Prints the value
+            // Panel configuration
             if (psi < 100) {
                 textMeshProUGUI.color = Color.yellow;
                 is_ok = false;
@@ -38,12 +39,13 @@ public class pressure_panel : MonoBehaviour
         }
     }
 
+    // We set a timer to increase the values slowly
     float timer = 0f;
-    bool timerReached = false;
-    // Update is called once per frame
+    bool timerReached = false;    
     void Update()
     {        
         isHolding = compressor.GetComponent<HoldCompressor>().isHolding;    
+        // Panel configuration
         if(is_on) { // Enables the panel
             panel.SetActive(true);
             textMeshProUGUI.text = psi.ToString();
@@ -59,26 +61,29 @@ public class pressure_panel : MonoBehaviour
         else if (!is_connected) {
             panel.SetActive(false);
         }
-        if (isHolding && is_connected){
+        if (isHolding && is_connected){ // if the pump is connected...
             panel.SetActive(true);
             if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.4f)
                 {
-                    animator.speed = 0;
+                    animator.speed = 0; // ...pause the animation...
                 }
             if (!timerReached) 
                 timer += Time.deltaTime;
 
-            if (!timerReached && timer > .25f){
+            if (!timerReached && timer > .25f){ 
+                // ...and call the function that increases the value
                 timerReached = true;
                 timer = 0;
                 Pump();
             }
         }
-        if(is_ok && is_connected){
+        if(is_ok && is_connected){ 
+            // Resumes the animation if the value reaches the limit
             animator.speed = 1;
         }
     }
 
+    // Checking if the pump is connected
     void OnTriggerEnter(Collider c) {
         if (c.gameObject == compressor){
             is_connected = true;

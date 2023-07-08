@@ -545,7 +545,7 @@ ModelImporter:
     skeleton:
 <<<<<<< Updated upstream:Assets/StarterAssets/ThirdPersonController/Character/Models/Armature.fbx.meta
     - name: Mannequin(Clone)
-      parentName: 
+      parentName:
 =======
     - name: EGEROBOT_Final(Clone)
       parentName: 
@@ -819,7 +819,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Left_RingProximal
       parentName: Left_Hand
-<<<<<<< Updated upstream:Assets/StarterAssets/ThirdPersonController/Character/Models/Armature.fbx.meta
+      <<<<<<< Updated upstream:Assets/StarterAssets/ThirdPersonController/Character/Models/Armature.fbx.meta
       position: {x: 0.009525569, y: 0.08161553, z: -0.012242405}
       rotation: {x: -0.017654313, y: -0.6026994, z: -0.0040520057, w: 0.79776275}
       scale: {x: 1, y: 1, z: 1}
