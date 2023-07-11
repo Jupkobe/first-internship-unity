@@ -1,6 +1,6 @@
-# EGEROBOT Internship Project
+# My First Internship Project
 
-My name is Ramazan Eyüp Gültekin and this is my project for Egerobot internship program.
+My name is Ramazan Eyüp Gültekin and this is my project for mandatory internship program.
 
 ## Project
 
